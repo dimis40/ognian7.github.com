@@ -16,7 +16,6 @@ function init() {
 	new BinaryAjax("images/example_geotag2.jpg", function(data){
 		models = data.binaryResponse; });
 	function mm(evt) { 
-		console.log(evt);
 		if (evt.shiftKey && (gToMove || evt.graphic)) {
 			if (evt.graphic) gToMove = evt.graphic;
 			ex=gToMove.attributes.e;if(ex.GPSLatitude||ex.GPSLongitude)return;
@@ -26,11 +25,9 @@ function init() {
 			gToMove = map.graphics.add(gToMove);
 		} else {gToMove = null;} } }
 function handleDrop(evt) {
-	console.log(evt);
 	evt.preventDefault(); evt.stopPropagation();	
 	var dataTrans = evt.dataTransfer, files = dataTrans.files,
 		types = dataTrans.types;
-	console.log(dataTrans,files);	
 	if (files && files.length > 0) {
 		for (x in files) {
 			var file = files[x];
@@ -99,5 +96,5 @@ function save(id) {
 	data.setUint8(o+18-38+166,longitude[3].charCodeAt(0));
 	for (var i = o+18; i<bFile.getLength(); i++) 
 		data.setUint8(i+200,bFile.getByteAt(i)); 
-	var blob = new Blob([buffer],{type:"image/jpeg"});
+	var blob = new Blob([buffer]);
 	saveAs(blob, map.graphics.graphics[id].attributes.f.name);};
