@@ -96,5 +96,5 @@ function save(id) {
 	data.setUint8(o+18-38+166,longitude[3].charCodeAt(0));
 	for (var i = o+18; i<bFile.getLength(); i++) 
 		data.setUint8(i+200,bFile.getByteAt(i)); 
-	var blob = new Blob([buffer]);
+	var blob = new Blob([buffer],{type:"image/jpeg"});
 	saveAs(blob, map.graphics.graphics[id].attributes.f.name);};
