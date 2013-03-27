@@ -78,7 +78,7 @@ function save(id) {
 	point = map.graphics.graphics[id].geometry;
 	var latitude = toG(point.getLatitude(),"N","S");
 	var longitude = toG(point.getLongitude(),"E","W");
-	var o; for (o=2;o<1000;o++) if (bFile.getShortAt(o)==57855) break;
+	var o; for (o=2;o<9999;o++) if (bFile.getShortAt(o)==57855) break;
 	var offst=bFile.getShortAt(o+2,true),lend=(bFile.getStringAt(o+10,2)=="II");
 	buffer = new ArrayBuffer(bFile.getLength()+200),data = new DataView(buffer);
 	for (var i = 0;i<o+18;i++)	data.setUint8(i,bFile.getByteAt(i));
